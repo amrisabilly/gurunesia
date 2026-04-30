@@ -1,70 +1,55 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
+import { Bell, MessageCircle, HelpCircle } from 'lucide-react';
+import bg_hero from './public/landing/bg-hero.webp' 
 
 export default function Home() {
   return (
     <div className="w-full">
       {/* Navigation Header */}
       <nav className="bg-white border-b border-gray-200">
-        <div className="mx-auto px-4 sm:px-6 lg:px-16 bg-red-300">
-          <div className="flex justify-between items-center h-16">
+        <div className="mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="flex justify-between items-center h-[72px]">
             
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-                G
-              </div>
-              <span className="text-xl font-bold text-blue-600">Gurunesie</span>
+              <span className="text-[24px] font-extrabold text-primary">Gurunesia</span>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-700 hover:text-blue-600 text-sm">
+              <a href="#" className="text-gray-700 hover:text-primary text-sm">
                 Find Teachers
               </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 text-sm">
+              <a href="#" className="text-gray-700 hover:text-primary text-sm">
                 Dashboard
               </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 text-sm">
+              <a href="#" className="text-gray-700 hover:text-primary text-sm">
                 Verification
               </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 text-sm">
+              <a href="#" className="text-gray-700 hover:text-primary text-sm">
                 Earnings
               </a>
-              <button className="text-gray-400">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12z"
-                  />
-                </svg>
-              </button>
             </div>
 
             <div className="flex items-center space-x-4">
               {/* Bell Icon */}
-              <button className="text-gray-400 hover:text-gray-600">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
+              <button className="text-primary hover:text-gray-600">
+                <Bell size={24} strokeWidth={3}/>
               </button>
 
               {/* Chat Icon */}
-              <button className="text-gray-400 hover:text-gray-600">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
-                </svg>
+              <button className="text-primary hover:text-gray-600">
+                <MessageCircle size={24} strokeWidth={3}/>
               </button>
 
               {/* Help Icon */}
-              <button className="text-gray-400 hover:text-gray-600">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+              <button className="text-primary hover:text-gray-600">
+                <HelpCircle size={24} strokeWidth={3}/>
               </button>
 
               {/* Profile Button */}
-              <button className="px-4 py-2 border-2 border-gray-300 text-blue-600 rounded-lg hover:bg-gray-50 text-sm font-medium">
+              <button className="px-4 py-2 border-2 border-gray-300 text-primary rounded-lg hover:bg-gray-50 text-sm font-medium">
                 Profile
               </button>
             </div>
@@ -73,8 +58,18 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-20 px-4 relative h-screen">
+        <Image
+          src={bg_hero}
+          alt="Hero background"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* White Overlay */}
+        <div className="absolute inset-0 bg-white/50"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center mt-40">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Empowering Educators, Enhancing Education.
           </h1>
@@ -84,17 +79,16 @@ export default function Home() {
             A fair, transparent, and trusted platform for modern education.
           </p>
 
-          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
               href="/register?role=teacher"
-              className="px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition duration-300"
+              className="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-blue-900 transition duration-300"
             >
               Become a Teacher
             </Link>
             <Link
               href="/register?role=student"
-              className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition duration-300"
+              className="px-8 py-3 border-2 border-primary text-primary rounded-full font-semibold hover:bg-blue-200 transition duration-300"
             >
               Find a Teacher
             </Link>
@@ -103,7 +97,7 @@ export default function Home() {
       </section>
 
       {/* Teachers Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-[#EFF4FF]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-3">
             For Teachers: Teach on Your Terms
@@ -115,7 +109,7 @@ export default function Home() {
           {/* Features Grid */}
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1: Trusted Verification */}
-            <div className="text-center">
+            <div className="text-left bg-white p-6 rounded-xl">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-white"
@@ -138,7 +132,7 @@ export default function Home() {
             </div>
 
             {/* Feature 2: Syllabus Creation */}
-            <div className="text-center">
+            <div className="text-left bg-white p-6 rounded-xl">
               <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-white"
@@ -158,7 +152,7 @@ export default function Home() {
             </div>
 
             {/* Feature 3: Fair Pricing */}
-            <div className="text-center">
+            <div className="text-left bg-white p-6 rounded-xl">
               <div className="w-16 h-16 bg-amber-700 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-white"
@@ -175,6 +169,76 @@ export default function Home() {
                 Set competitive rates with our intelligent pricing guidance based on local UAR
                 standards ensuring fair compensation.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Students Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-3">
+            For Students: Discover Your Ideal Mentor
+          </h2>
+          <p className="text-gray-600 mb-12">
+            Finding the right teacher has never been easier, safer, or more accessible.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Image & Card */}
+            <div className="flex flex-col gap-6">
+              {/* Character Image */}
+              <div className="bg-gradient-to-b from-teal-400 to-teal-500 rounded-2xl p-12 text-center h-96 flex items-center justify-center">
+                <div className="text-white text-8xl">👨</div>
+              </div>
+
+              {/* Search by Location Card */}
+              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <svg className="w-6 h-6 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+                  </svg>
+                  <h3 className="text-xl font-bold text-gray-900">Search by Location</h3>
+                </div>
+                <p className="text-gray-600 text-sm">
+                  Find highly qualified educators right in your neighborhood or for convenient online sessions.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side - Two Cards */}
+            <div className="flex flex-col gap-6">
+              {/* Card 1: Trusted & Verified */}
+              <div className="bg-blue-100 rounded-2xl p-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-2xl">👨‍💼</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Trusted & Verified</h3>
+                    <p className="text-gray-700 text-sm">
+                      Every educator undergoes strict credential checks before they join.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Seamless Booking */}
+              <div className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-2xl p-8 text-white">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">Seamless Booking</h3>
+                    <p className="text-blue-100 text-sm">
+                      Schedule sessions, manage payments, and communicate directly through one secure platform.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
