@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  password    String
+  role        Role
+  verifiedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  guru   Guru?
+  siswa  Siswa?
+
+  chatsSent     Chat[] @relation("Sender")
+  chatsReceived Chat[] @relation("Receiver")
+}
+
+enum Role {
+  ADMIN
+  GURU
+  SISWA
+}
+
+model Siswa {
+  id      String @id @default(uuid())
+  userId  String @unique
+  user    User   @relation(fields: [userId], references: [id])
+
+  name    String
+  location String
+  lat     Float
+  lng     Float
+
+  bookings Booking[]
+}
+
+model Guru {
+  id        String @id @default(uuid())
+  userId    String @unique
+  user      User   @relation(fields: [userId], references: [id])
+
+  name      String
+  bio       String?
+  price     Int
+
+  // 🔥 penting
+  availabilityType AvailabilityType @default(SCHEDULED)
+
+  syllabus   Syllabus[]
+  schedules  Schedule[]
+
+  bookings Booking[]
+}
+
+enum AvailabilityType {
+  ALWAYS_AVAILABLE
+  SCHEDULED
+}
+
+model Syllabus {
+  id        String @id @default(uuid())
+  guruId    String
+  title     String
+  description String?
+  order     Int
+
+  guru Guru @relation(fields: [guruId], references: [id])
+}
+
+model Schedule {
+  id        String @id @default(uuid())
+  guruId    String
+
+  day       Int      // 0 = Sunday, 1 = Monday
+  startTime String   // "09:00"
+  endTime   String   // "12:00"
+
+  guru Guru @relation(fields: [guruId], references: [id])
+}
+
+model Booking {
+  id        String   @id @default(uuid())
+  guruId    String
+  siswaId   String
+
+  date      DateTime
+  duration  Int
+  price     Int
+
+  status    BookingStatus @default(PENDING)
+
+  guru  Guru  @relation(fields: [guruId], references: [id])
+  siswa Siswa @relation(fields: [siswaId], references: [id])
+
+  chat   Chat[]
+  review Review?
+}
+
+enum BookingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  COMPLETED
+  CANCELLED
+}
+
+model Chat {
+  id        String   @id @default(uuid())
+  bookingId String
+  senderId  String
+  message   String
+  createdAt DateTime @default(now())
+
+  booking Booking @relation(fields: [bookingId], references: [id])
+  sender  User    @relation("Sender", fields: [senderId], references: [id])
+
+  users User[] @relation("Receiver")
+}
+
+model Review {
+  id        String @id @default(uuid())
+  bookingId String @unique
+
+  rating    Int
+  comment   String
+
+  booking Booking @relation(fields: [bookingId], references: [id])
+}
