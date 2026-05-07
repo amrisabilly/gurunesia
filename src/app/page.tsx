@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* Navigation Header */}
-      <nav className="bg-white border-b border-gray-200">
+      <nav className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
         <div className="mx-auto px-4 sm:px-6 lg:px-16">
           <div className="flex justify-between items-center h-[72px]">
             
@@ -58,7 +58,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 relative h-screen">
+      <section className="py-20 px-4 relative h-screen pt-[72px]">
         <Image
           src={bg_hero}
           alt="Hero background"
@@ -91,19 +91,19 @@ export default function Home() {
               className="px-8 py-3 border-2 border-primary text-primary rounded-full font-semibold hover:bg-blue-200 transition duration-300"
             >
               Find a Teacher
-            </Link>
+            </Link>7
           </div>
         </div>
       </section>
 
       {/* Teachers Section */}
       <section className="py-16 px-4 bg-[#EFF4FF]">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[1760px] mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-3">
             For Teachers: Teach on Your Terms
           </h2>
-          <p className="text-center text-gray-600 mb-12">
-            We believe in empowering educators with fair compensation and flexible scheduling
+          <p className="text-center text-gray-600 mb-20">
+            We believe in empowering educators with fair compensation and flexible <br /> scheduling
           </p>
 
           {/* Features Grid */}
