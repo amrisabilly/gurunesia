@@ -65,7 +65,7 @@ export default function LoginPage() {
           </div>
         </section>
 
-        <section className="relative flex flex-col justify-center px-20 py-10 lg:col-span-2 lg:px-12 animate-fade-in">
+        <section className="relative flex flex-col justify-center px-20 py-10 lg:col-span-2 lg:px-40 animate-fade-in">
           <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
               <span className="rounded-full bg-slate-900 px-2 py-1 text-[10px] text-white">
                 Teacher

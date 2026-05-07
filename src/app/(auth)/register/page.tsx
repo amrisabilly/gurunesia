@@ -5,9 +5,9 @@ import heroImage from "@/app/public/auth/bg-login-register.webp";
 
 export default function RegisterPage() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="grid min-h-screen lg:grid-cols-3">
-        <section className="relative min-h-[320px] overflow-hidden bg-[#0b4b8c] px-6 py-10 text-white lg:col-span-1 lg:min-h-screen lg:px-10">
+    <main className="h-screen overflow-hidden bg-slate-50 text-slate-900">
+      <div className="grid h-screen lg:grid-cols-3 overflow-hidden">
+        <section className="relative overflow-hidden bg-[#0b4b8c] px-6 py-10 text-white lg:col-span-1 lg:h-full lg:px-10">
           <Image
             src={heroImage}
             alt="Teacher mentoring students"
@@ -65,7 +65,7 @@ export default function RegisterPage() {
           </div>
         </section>
 
-        <section className="relative flex flex-col justify-center px-20 py-10 lg:col-span-2 lg:px-12 animate-fade-in">
+        <section className="relative flex flex-col justify-center px-20 py-10 lg:col-span-2 lg:px-44 animate-fade-in overflow-y-hidden h-full">
           <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
             <span className="rounded-full bg-slate-900 px-2 py-1 text-[10px] text-white">
               Teacher
